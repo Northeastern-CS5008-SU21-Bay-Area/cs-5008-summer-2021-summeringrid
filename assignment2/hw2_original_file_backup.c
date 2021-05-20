@@ -1,63 +1,34 @@
 // name: <your name here>
 // email: <your email here>
 
-// version 1: It seems that both my isEmpty & isFull are not workable...
-// and still confuse about passing the * value to the functions
-
 #include <stdio.h>   // stardard input/output library
 #include <stdbool.h> // standard boolean library: bool, true, false
 
 #define MAXSIZE 100
 
-int s[MAXSIZE];     // stack
-int t = -1;         // when top value = -1, the stack is empty
-
 bool isEmpty (int* s, int t) {
   // returns true if t = -1
-    // ?can I write: if (t < 0)
-    if(t == -1){
-        return true;
-    }else{
-        return false;
-    }
+
+  // INSERT YOUR CODE HERE
 }
-// given code: bool isFull (int* s, int t) {
+
 bool isFull (int* s, int t) {
   // returns true if no more room in the stack
-    if(t >= MAXSIZE){
-        return true;
-    }else{
-        return false;
-    }
+
+  // INSERT YOUR CODE HERE
 }
-// given code: void push(int v, int* s, int* tp) {
+
 void push(int v, int* s, int* tp) {
   // put v onto the top of the stack s unless it is already full
-    if (! isFull(s, *tp)){
-//        tp++;
-//        *tp = *(tp+1);
-        (*tp)++;
-        s[*tp] = v;
-    }else{
-        printf("You are attempting to push %d onto a full stack.\n", v);
-    }
-    return;
+
+  // INSERT YOUR CODE HERE
 }
 
 int pop (int* s, int* tp) {
   // return the top entry in the stack unless stack is empty
   // update s and *tp -- requires top to be passed by reference!
-    // todo 2 why I need to give topvalue an initial value?
-    int topvalue = 0;
-    if (! isEmpty(s,  *tp)){
-        topvalue = s[*tp];
-//        tp--;
-//        *tp = *(tp-1);
-        (*tp)--;
-    }else{
-        printf("You are attempting to pop from an empty stack.\n");
-    }
-    return topvalue;
+
+  // INSERT YOUR CODE HERE
 }
 
 int main () {
@@ -95,4 +66,3 @@ int main () {
   printf("2> %d\n",pop(stack2, &top2));
   return 0;
 }
-
