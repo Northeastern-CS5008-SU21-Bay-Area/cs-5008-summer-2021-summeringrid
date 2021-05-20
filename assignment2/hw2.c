@@ -17,7 +17,7 @@ bool isEmpty (int* s, int t) {
         return false;
     }
 }
-// given code: bool isFull (int* s, int t) {
+
 bool isFull (int* s, int t) {
   // returns true if no more room in the stack
     if(t >= MAXSIZE){
@@ -26,7 +26,7 @@ bool isFull (int* s, int t) {
         return false;
     }
 }
-// given code: void push(int v, int* s, int* tp) {
+
 void push(int v, int* s, int* tp) {
   // put v onto the top of the stack s unless it is already full
     if (! isFull(s, *tp)){
