@@ -1,8 +1,5 @@
-// name: <your name here>
-// email: <your email here>
-
-// version 1: It seems that both my isEmpty & isFull are not workable...
-// and still confuse about passing the * value to the functions
+// name: Xiaying Liu
+// email: liu.xiaoying@northeastern.edu
 
 #include <stdio.h>   // stardard input/output library
 #include <stdbool.h> // standard boolean library: bool, true, false
