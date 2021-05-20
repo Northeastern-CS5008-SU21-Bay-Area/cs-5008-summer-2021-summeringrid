@@ -11,7 +11,6 @@ int t = -1;         // when top value = -1, the stack is empty
 
 bool isEmpty (int* s, int t) {
   // returns true if t = -1
-    // ?can I write: if (t < 0)
     if(t == -1){
         return true;
     }else{
@@ -31,8 +30,6 @@ bool isFull (int* s, int t) {
 void push(int v, int* s, int* tp) {
   // put v onto the top of the stack s unless it is already full
     if (! isFull(s, *tp)){
-//        tp++;
-//        *tp = *(tp+1);
         (*tp)++;
         s[*tp] = v;
     }else{
@@ -44,12 +41,9 @@ void push(int v, int* s, int* tp) {
 int pop (int* s, int* tp) {
   // return the top entry in the stack unless stack is empty
   // update s and *tp -- requires top to be passed by reference!
-    // todo 2 why I need to give topvalue an initial value?
     int topvalue = 0;
     if (! isEmpty(s,  *tp)){
         topvalue = s[*tp];
-//        tp--;
-//        *tp = *(tp-1);
         (*tp)--;
     }else{
         printf("You are attempting to pop from an empty stack.\n");
