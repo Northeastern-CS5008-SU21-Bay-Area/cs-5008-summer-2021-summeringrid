@@ -1,5 +1,5 @@
-// name: Xiaoying Liu
-// email: liu.xiaoying@northeastern.edu
+//name: Xiaoying Liu
+//email: liu.xiaoying@northeastern.edu
 
 #include <stdio.h>   // stardard input/output library
 #include <stdbool.h> // standard boolean library: bool, true, false
