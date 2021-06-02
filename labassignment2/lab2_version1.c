@@ -62,12 +62,22 @@ void dequeue()
 		printf("The queue is empty.\n");
 	}
 	// check if front and rear are equal then set front=0, rear=0
-	// ↑ can I ignore this step?
+	// ↑ can I ignor this step?
+	// if (front = rear)
+	// {
+	// 	front = 0; rear =0;
+	// }
 
 }
 
 void display()
 { 
+	// printf("Queue is: ");
+ //    for (int i = 0; i < elementcount; i++)
+ //    {
+ //    	printf("%d ", queue[i]);
+ //    }
+
     printf("Queue is: ");
     for (int i = front; i < front + elementcount; i++)
     {
