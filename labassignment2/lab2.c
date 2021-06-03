@@ -58,8 +58,6 @@ void dequeue()
 	{
 		printf("The queue is empty.\n");
 	}
-	// check if front and rear are equal then set front=0, rear=0
-	// ↑ can I ignore this step?
 
 }
 
