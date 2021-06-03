@@ -1,12 +1,14 @@
 // name: <your name here>
 // email: <your email here>
 
+// be prepared 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <time.h>
 
-#define LIMIT 50
+#define LIMIT 20
 #define RAND_RANGE 100
 
 int main(){
@@ -33,12 +35,12 @@ int main(){
     source[i] = rand() % RAND_RANGE;
   }
 
-  //print out source array in rows of 20 elements
+  //print out source array in rows of 5 elements  -> there is 5 columns, LIMIT/5 rows
   printf("Source array:\n");
-  for (i=0; i < ((LIMIT/20)+1); i++) {
-    for (j=0; j<20; j++) {
-      if (i*20+j < LIMIT) {
-	printf("%.2d ",source[i*20+j]);
+  for (i=0; i < ((LIMIT/5)+1); i++) {   // row(0,1,2,3)    but i<4+1   //[Question] why +1? 发现不能整除的时候，e.g.6column，就需要+1了！why?
+    for (j=0; j<5; j++) {               // column*5(0,1,2,3,4)
+      if (i*5+j < LIMIT) {
+	printf("%.2d ",source[i*5+j]);                                    //[Question] can't understand this part: i*20+j
       }
     }
     printf("\n");
@@ -49,6 +51,8 @@ int main(){
   for (i=0; i<LIMIT; i++) {
 
     // INSERT YOUR CODE HERE
+    // compare the array[i] with array[i+1] then sort these two items?
+    // my option: Bubble Sort/ Selection Sort/ Insertion Sort
     
   }
   

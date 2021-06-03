@@ -37,9 +37,8 @@ int enqueue(int data)
 	queue[rear] = data;
 	elementcount++;
 	printf("Enqueued data is: %d\n", queue[rear]);
-	}else if (isfull())
+	}else
 	{
-		// todo How should deal with a full enqeue?
 		printf("The queue is full.\n");
 	}
 
@@ -53,11 +52,9 @@ void dequeue()
 	{
 		printf("Dequeued data is %d\n", queue[front]);
 		front++;
-		rear++;
 		elementcount--;
-		
 	
-	}else if (isempty())
+	}else
 	{
 		printf("The queue is empty.\n");
 	}
