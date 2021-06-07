@@ -1,5 +1,5 @@
-//name: Xiaoying Liu
-//email: liu.xiaoying@northeastern.edu
+// name: <your name here>
+// email: <your email here>
 
 #include <stdio.h>   // stardard input/output library
 #include <stdbool.h> // standard boolean library: bool, true, false
@@ -71,13 +71,7 @@ typedef struct q {
 queue_t* newQueue() {
   queue_t* q_p;   // temp pointer to hold newly created queue
 
-  // 1/6***** INSERT YOUR CODE HERE *****
-  //【 Never forget to allocate memory when create new type】
-  q_p = (queue_t*)malloc(sizeof(queue_t));
-
-  // NOTE: I shouldn't let my pointer point to a NULL, I need to make the value of the pointer points to equal to NULL
-  q_p->head_p = NULL;
-  q_p->tail_p = NULL;
+  // ***** INSERT YOUR CODE HERE *****
   
   return q_p;
 };
@@ -86,12 +80,7 @@ queue_t* newQueue() {
 bool isEmpty(queue_t* q_p) {
   bool b = true;   // temporary bool to hold return value - initalize to default value
 
-  // 2/6***** INSERT YOUR CODE HERE *****
-  if (q_p->head_p != NULL) {
-      b = false;
-  }
-  // NOTE: I shouldn't check the tail_p, once the head_p points to NULL, then it is an emptyQ
-  // tail_p is 'technically' always NULL
+  // ***** INSERT YOUR CODE HERE *****
   
   return b;
 };
@@ -100,38 +89,17 @@ bool isEmpty(queue_t* q_p) {
 void enqueue(queue_t* q_p, int d) {
   node_t* n_p = NULL; // temp node pointer
   
-  if (q_p != NULL) {        // QUESTION: to see whether if I created a new Queue, right? Can I skip this step?
+  if (q_p != NULL) {
 
     if (isEmpty(q_p)) {
       // queue is empty so insertion is easy
 
-      // 3/6***** INSERT YOUR CODE HERE *****
-      // my basic idea:
-      //(1). create a new node (↑already created n_p) (QUESTION: why I need to set a node pointer n_p ?)
-      //(2). set a new node's value as d ↓
-      //【3-4】since my queue is empty right now, I need to set the HEAD/TAIL both points to this newNode
-      //QUESTION: I thought it should be that left_p points to the Q's HEAD, and right_p points to NULL, do I need to
-      // separately set my head/tail and the left/right and why? --- No, not here because it is an empty Q.
-      
-      node_t* curNode = newNode(d);
-      q_p->head_p = curNode;
-      q_p->tail_p = curNode;
-
+      // ***** INSERT YOUR CODE HERE *****
 
     } else {
       // queue is not empty
 
-      // 4/6***** INSERT YOUR CODE HERE *****
-      // just create a new node and make its value as d
-      // set its left_p linked with the right_p of the queue, its right_p points to the value NULL
-      // Question ↑ it should be node_t = q_p OR q_p = node_t?
-
-      node_t* curNode = newNode(d);
-      // q_p->head_p->left_p = curNode;
-      q_p->tail_p->right_p = curNode;     // appending curNode to the tail of p_q
-      curNode->left_p = q_p->tail_p;
-      q_p->tail_p = curNode;              // now tail will be pointing to the last node
-
+      // ***** INSERT YOUR CODE HERE *****
 
     }    
   }
@@ -151,21 +119,15 @@ int dequeue(queue_t* q_p) {
 	t = n_p->data;      // get the value of data in the head of the queue
 
 	if (q_p->head_p  == q_p->tail_p) {      
-      // only one node in the queue, clear queue head and tail 
+          // only one node in the queue, clear queue head and tail 
 
-      // 5/6***** INSERT YOUR CODE HERE *****
-        q_p->head_p = NULL;
-        q_p->tail_p = NULL;
+          // ***** INSERT YOUR CODE HERE *****
+	  
 	} else {
           // mulitple nodes in queue, clean up head pointer and new head of queue
 
-	  // 6/6***** INSERT YOUR CODE HERE *****
-        // q_p->head_p = n_p->right_p;       
-        // q_p->head_p->left_p = NULL;   // q_p->head_p is the old 1st node; set it equal to NULL
-
-        q_p->head_p = n_p->left_p;
-        q_p->head_p->right_p = NULL;
-
+	  // ***** INSERT YOUR CODE HERE *****
+	  
 	}
 	
 	freeNode(n_p);  // free up the node that was dequeued
@@ -223,10 +185,6 @@ int main () {
   printf("\n");
 
   printf("dequeue[1]: ");
-  while (!isEmpty(q1_p)) {
-    printf("%d ", dequeue(q1_p));
-  }
-
   while (!isEmpty(q1_p)) {
     printf("%d ", dequeue(q1_p));
   }

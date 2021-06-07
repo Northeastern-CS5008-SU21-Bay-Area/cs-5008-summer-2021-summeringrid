@@ -1,14 +1,19 @@
-// name: <your name here>
-// email: <your email here>
-
-// be prepared 
+//Xiaoying Liu
+//liu.xiaoying@northeastern.edu
+/*
+Selection Sort
+1. traverse whole array, find the lowest one;
+2. swap the lowest one to the position of index0
+3. move the sorted array|unsorted array boundary +1
+4. repeat the above steps until unsorted section is empty
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <time.h>
 
-#define LIMIT 20
+#define LIMIT 50
 #define RAND_RANGE 100
 
 int main(){
@@ -35,12 +40,12 @@ int main(){
     source[i] = rand() % RAND_RANGE;
   }
 
-  //print out source array in rows of 5 elements  -> there is 5 columns, LIMIT/5 rows
   printf("Source array:\n");
-  for (i=0; i < ((LIMIT/5)+1); i++) {   // row(0,1,2,3)    but i<4+1   //[Question] why +1? 发现不能整除的时候，e.g.6column，就需要+1了！why?
-    for (j=0; j<5; j++) {               // column*5(0,1,2,3,4)
-      if (i*5+j < LIMIT) {
-	printf("%.2d ",source[i*5+j]);                                    //[Question] can't understand this part: i*20+j
+  // printf("LIMIT/5=%f\n", (double)(LIMIT/5));
+  for (i=0; i < ((LIMIT/20)+1); i++) {
+    for (j=0; j<20; j++) {
+      if (i*20+j < LIMIT) {
+	     printf("%.2d ",source[i*20+j]);
       }
     }
     printf("\n");
@@ -50,18 +55,31 @@ int main(){
   //selection sort
   for (i=0; i<LIMIT; i++) {
 
-    // INSERT YOUR CODE HERE
-    // compare the array[i] with array[i+1] then sort these two items?
-    // my option: Bubble Sort/ Selection Sort/ Insertion Sort
-    
+    // 1/2*******INSERT YOUR CODE HERE
+    dest[i] = source[i];
+  }
+
+  for (i=0; i<LIMIT-1; i++) {
+    smallest = dest[i];
+    for (j=i+1; j<LIMIT; j++){
+      if(dest[j]<smallest){
+        smallest=dest[j];
+        dest[j]=dest[i];
+        dest[i]=smallest;
+      }
+    }
   }
   
   //print out sorted array in rows of 10
   printf("Destination array:\n");
   for (i=0; i < ((LIMIT/10)+1); i++) {
-
-    // INSERT YOUR CODE HERE
-    
+    // 2/2********INSERT YOUR CODE HERE
+    for (j=0;j<10;j++){
+      if(i*10+j<LIMIT){
+         printf("%.2d ", dest[i*10+j]);
+      }
+    }
+    printf("\n");
   }
   printf("\n");
   
