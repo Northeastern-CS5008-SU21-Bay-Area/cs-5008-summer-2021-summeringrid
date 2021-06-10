@@ -6,6 +6,7 @@ Selection Sort
 2. swap the lowest one to the position of index0
 3. move the sorted array|unsorted array boundary +1
 4. repeat the above steps until unsorted section is empty
+
 */
 
 #include <stdio.h>
@@ -69,7 +70,7 @@ int main(){
       }
     }
   }
-  
+    
   //print out sorted array in rows of 10
   printf("Destination array:\n");
   for (i=0; i < ((LIMIT/10)+1); i++) {
