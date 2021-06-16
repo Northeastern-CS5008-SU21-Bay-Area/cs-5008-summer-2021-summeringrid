@@ -1,3 +1,17 @@
+//Xiaoying Liu
+//liu.xiaoying@northeastern.edu
+
+/*
+ Requriement:
+ Quick Sort and test on array of 200 random characters.
+ • Treat lower case letters a..z as if they were upper case A..Z for sorting
+ • Do NOT use any quick sort library functions!
+ 
+ • NOTE for part b:
+ the capital letters are mixed together with the small letters
+ 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -29,13 +43,31 @@ char upperChar(char c){
 }
 
 
-
 // pick pivot and then sort small and big parts 
 void quicky(char* data, int left, int right) {
+    // ADD YOUR CODE HERE
+    if(left < right){
+        int pivot  = data[right];
+        int i = left - 1;
+        for(int j = left; j <= right-1; j++){
 
-  // ADD YOUR CODE HERE
+            if(upperChar(data[j]) < pivot){
+                i++;
+                char temp = data[i];
+                data[i] = data[j];
+                data[j] = temp;
+            }
+        }
+        //data[i + 1] <-> value at pivot's position
+        char update = data[i + 1];
+        data[i + 1] = data[right];
+        data[right] = update;
 
-  return;
+        quicky(data, left, i);
+        quicky(data,  i + 2, right);
+    }
+    
+    return;
 }
 
 

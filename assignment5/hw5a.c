@@ -1,3 +1,19 @@
+//Xiaoying Liu
+//liu.xiaoying@northeastern.edu
+
+/*
+ Requriement:
+ Merge Sort and test on array of 200 random characters.
+ • Hint: you might first try adapting last week’s homework from int to
+ char and then change the sort routine
+ • Hint: C integer division always returns an int, not a fraction
+ 
+ • NOTE for part a:
+ the capital letters are sorted separately from the small letters
+ 
+ 
+ (expected result sample: slides p184)
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -34,14 +50,39 @@ void mergeIt(
 	   int leftStop,
 	   int rightStart,
 	   int rightStop) {
-  
 
-  // ADD YOUR CODE HERE
-  
+  // ******** 1/1 ADD YOUR CODE HERE
+    char newArr[rightStop - leftStart + 1];
+    int leftIndex = leftStart;
+    int rightIndex = rightStart;
+    int index = 0;
+    
+    while(leftIndex <= leftStop && rightIndex <= rightStop) {
+        if (data[leftIndex] < data[rightIndex]) {
+            newArr[index++] = data[leftIndex++];
+        }else {
+            newArr[index++] = data[rightIndex++];
+        }
+    }
+    
+    while(leftIndex <= leftStop) {
+        newArr[index++] = data[leftIndex++];
+    }
+    
+    while(rightIndex <= rightStop) {
+        newArr[index++] = data[rightIndex++];
+    }
+    
+    int i = 0;
+    int j = leftStart;
+    while (i < rightStop - leftStart + 1){
+        data[j] = newArr[i];
+        i++;
+        j++;
+    }
   return;
+    // attempt2: return newArr
 }
-
-
 
 // break data array up into halves until down to single elements
 // then merge them
