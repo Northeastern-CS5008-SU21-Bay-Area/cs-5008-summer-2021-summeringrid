@@ -278,9 +278,7 @@ void postorder (tnode_t* np) {
 
 void breadthFirst (tnode_t* root) {
   // ************ 4/4: INSERT YOUR CODE HERE
-    if(root == NULL) {
-        return;
-    }
+    if(root == NULL) return;
 
     queue_t* q = newQueue();
     enqueue(q, root);
@@ -294,11 +292,7 @@ void breadthFirst (tnode_t* root) {
         if(elem->right != NULL) {
             enqueue(q, elem->right);
         }
-        
-        
     }
-    
-    
   return;
 }
 
