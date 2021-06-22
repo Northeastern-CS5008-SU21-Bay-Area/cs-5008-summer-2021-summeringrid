@@ -1,5 +1,5 @@
-//Xiaoying Liu
-//liu.xiaoying@northeastern.edu
+//enter your name here
+//enter your email here
 
 #include<stdio.h>
 #include<stdlib.h>

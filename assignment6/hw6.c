@@ -1,5 +1,5 @@
-// name: <your name here>
-// email: <your email here>
+// name: Xiaoying Liu
+// email: liu.xiaoying@northeastern.edu
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -243,27 +243,62 @@ void freeQueue(queue_t* qp) {
 // void breadthFirst (tnode_t* np) {}
 
 void preorder (tnode_t* np) {
-  // INSERT YOUR CODE HERE
-
+  // ************ 1/4: INSERT YOUR CODE HERE
+    if(np == NULL) return;
+    
+    printf("%c",np->data );
+    preorder(np->left);
+    preorder(np->right);
+    
   return;
 }
 
 void inorder (tnode_t* np) {
-  // INSERT YOUR CODE HERE
+  // ************ 2/4: INSERT YOUR CODE HERE
+    if (np == NULL) return;
+
+    inorder(np->left);
+    printf("%c", np->data);
+    inorder(np->right);
   
   return;
 }
 
 void postorder (tnode_t* np) {
-  // INSERT YOUR CODE HERE
-  
+  // ************ 3/4: INSERT YOUR CODE HERE
+    if (np == NULL) return;
+
+    postorder(np->left);
+    postorder(np->right);
+    printf("%c", np->data);
+    
   return;
 }
 
 
 void breadthFirst (tnode_t* root) {
-  // INSERT YOUR CODE HERE
-  
+  // ************ 4/4: INSERT YOUR CODE HERE
+    if(root == NULL) {
+        return;
+    }
+
+    queue_t* q = newQueue();
+    enqueue(q, root);
+    while(!isEmpty(q)) {
+        tnode_t* elem = dequeue(q);
+        printf("%c", elem->data);
+        
+        if(elem->left != NULL) {
+            enqueue(q, elem->left);
+        }
+        if(elem->right != NULL) {
+            enqueue(q, elem->right);
+        }
+        
+        
+    }
+    
+    
   return;
 }
 
@@ -324,8 +359,3 @@ int main() {
 
   return 0;
 }
-
-
-
-
-
