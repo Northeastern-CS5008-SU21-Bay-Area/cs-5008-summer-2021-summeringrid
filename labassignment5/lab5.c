@@ -87,7 +87,7 @@ void preorder(avl_node *temp)
     printf("%d\n",temp->data);
     preorder(temp->left);
     preorder(temp->right);
-        free(temp);
+        free(temp);     // Question1:do I have to free the temp in pre/in/post order method?
     }
     }
 
@@ -97,11 +97,15 @@ avl_node* Insert(avl_node* root,int data)
 {
     
     //INSERT YOUR CODE HERE
+    if (root == NULL) return NewNode(data);
     
-    
-    
-    
-    
+    if (data < root->data) {
+        root->left = Insert(root->left, data);
+    } else if (data > root->data) {
+        root->right = Insert(root->right, data);
+    } else {
+        return root;
+    }
     
 /*updating the height after insertion of the node*/
     root->height = max(height(root->left),height(root->right))+1;
@@ -114,7 +118,7 @@ avl_node* Insert(avl_node* root,int data)
         return RightRotate(root);
 
     // Right Right Case
-    if(balance < -1 && data > root->right->data)
+    if(balance < -1 && data > root->right->data)    //Question2: balance < -1?
         return LeftRotate(root);
 
     //Left Right Case
