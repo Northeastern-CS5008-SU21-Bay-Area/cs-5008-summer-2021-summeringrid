@@ -73,7 +73,20 @@ int main () {
     // S6: digit -> S6; , -> S6; " -> ACCEPTSTATE; 
     // ACCEPTSTATE: done!
     // else go to ERRORSTATE
-    //
+    // //「兩個quotes之間」
+      
+      /**
+      TARGET:
+      1,"New York city, New York","8,175,133",
+      [New York city, New York]: 8175133
+       
+      printf("[%.30s]: %d\n", cityStr, popInt);
+      MY WORK:
+          1. cityStr
+          2. popInt!
+       
+       e.g. (X)時就不檢測了
+      */
     while (feof(fp) == 0){
 
       nextChar = 0;
@@ -98,7 +111,7 @@ int main () {
 	    break;
 
 
-	  // ADD YOUR CODE HERE
+	  // ADD YOUR CODE HEREchar pop[MAXSTRING];
  
 	    
 	  case ACCEPTSTATE:

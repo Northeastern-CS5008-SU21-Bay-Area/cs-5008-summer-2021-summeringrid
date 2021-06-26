@@ -1,5 +1,5 @@
-// name: <your name here>
-// email: <your email here>
+// name: Xiaoying Liu
+// email: liu.xiaoying@northeastern.edu
 
 // format of document is a bunch of data lines beginning with an integer (rank which we ignore)
 // then a ',' followed by a double-quoted string (city name)
@@ -42,8 +42,8 @@ void appendChar(char* s, char c) {
     charToStr[1] = '\0';          // put NUL to terminate string of one character
     strcat(s, charToStr);
 }
-
-
+// Learn0: char *strcat(char *dest, const char *src)appends the string pointed to by src to the end
+// of the string pointed to by dest.
 
 int main () {
 
@@ -54,8 +54,10 @@ int main () {
   int  state;                  // FSM state
   int  nextChar;               // index of next character in input string
   char temp[MAXSTRING];        // temp string to build up extracted strings from input characters
-  
- 
+    char tempCity[MAXSTRING];
+  char pop[MAXSTRING];
+    
+    
   FILE* fp;
   fp = fopen("pop.csv","r");
 
@@ -75,34 +77,85 @@ int main () {
     // else go to ERRORSTATE
     //
     while (feof(fp) == 0){
-
+        // Learn1: function int feof(FILE *stream) tests the end-of-file indicator for the given stream
       nextChar = 0;
       state = STARTSTATE; 
       strcpy(temp,"");       // temp = ""
+      strcpy(tempCity, "");
+      strcpy(pop, "");
 
       if (nextChar >= strlen(inputLine)){
 	// if no input string then go to ERRORSTATE
 	state = ERRORSTATE;
       } 
 
-      while ((state != ERRORSTATE) && (state != ACCEPTSTATE)) {
-	switch (state) {
-	  case STARTSTATE:
+    while ((state != ERRORSTATE) && (state != ACCEPTSTATE)) {
+    switch (state) {
+      case STARTSTATE:
 	    // look a digit to confirm a valid line
 	    if (isDigit(inputLine[nextChar])) {
 	      state = S1;
 	      appendChar(temp, inputLine[nextChar]);
 	    } else {
 	      state = ERRORSTATE;
-	    }  
+	    }
 	    break;
-
-
-	  // ADD YOUR CODE HERE
- 
-	    
+            
+  // ***************** ADD YOUR CODE HERE
+      case S1:
+        if (inputLine[nextChar] == ',') {
+            state = S2;
+        }
+        break;
+      
+      case S2:
+        if (inputLine[nextChar] == '"') {
+            state = S3;
+            char tempCity[MAXSTRING];
+        }
+        break;
+      
+      case S3:
+        if (inputLine[nextChar] != '"') {
+            appendChar(tempCity, inputLine[nextChar]);
+        }else{
+            state = S4;
+            strcpy(cityStr, tempCity);
+        }
+        break;
+       
+      case S4:
+        if (inputLine[nextChar] == ',') {
+            state = S5;
+        }
+        break;
+      
+      case S5:
+        if (inputLine[nextChar] == '"') {
+            state = S6;
+            char pop[MAXSTRING];
+        } else if (inputLine[nextChar] == '('){
+            popInt = 0;
+            state = ACCEPTSTATE;
+            }
+        break;
+      
+      case S6:
+        if (isDigit(inputLine[nextChar])) {
+            appendChar(pop, inputLine[nextChar]);
+        } else if (inputLine[nextChar] == '"') {
+            popInt = atoi(pop);
+            strcpy(pop,"");
+            state = ACCEPTSTATE;
+        }
+        break;
+            
+            
+            
+//***************** FOLLOWINGS ARE GIVEN CODES:
 	  case ACCEPTSTATE:
 	    // nothing to do - we are done!
+            
 	    break;
 	    
 	  default:
@@ -119,6 +172,7 @@ int main () {
 	  
 
       // process the line - print out raw line and the parsed fields
+        
       printf("> %.60s\n", inputLine);
       printf("[%.30s]: %d\n", cityStr, popInt);
 
@@ -136,3 +190,4 @@ int main () {
   
   return 0;
 }
+
