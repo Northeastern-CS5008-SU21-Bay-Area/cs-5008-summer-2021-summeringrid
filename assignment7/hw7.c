@@ -54,9 +54,9 @@ int main () {
   int  state;                  // FSM state
   int  nextChar;               // index of next character in input string
   char temp[MAXSTRING];        // temp string to build up extracted strings from input characters
-    char tempCity[MAXSTRING];
+  char tempCity[MAXSTRING];
   char pop[MAXSTRING];
-    
+  
     
   FILE* fp;
   fp = fopen("pop.csv","r");
@@ -111,7 +111,6 @@ int main () {
       case S2:
         if (inputLine[nextChar] == '"') {
             state = S3;
-            char tempCity[MAXSTRING];
         }
         break;
       
@@ -133,7 +132,6 @@ int main () {
       case S5:
         if (inputLine[nextChar] == '"') {
             state = S6;
-            char pop[MAXSTRING];
         } else if (inputLine[nextChar] == '('){
             popInt = 0;
             state = ACCEPTSTATE;
