@@ -33,8 +33,10 @@ printf("Enter the priority:");
 scanf("%d",&(temp->priority));
 int pri=temp->priority;
     
-//insert your code here
-    
+//**********2-1 insert your code here
+    // if(front=null or priority > priority of the node already present) then insert the node at front
+    // inserting the node by traversing through the list and finding the correct position [use a while loop]
+    // if next != null && P.next's priority >= this temp.priority then ...
     
     
 }
@@ -42,7 +44,9 @@ int pri=temp->priority;
 /* Delete the node which is present at the front*/
 node_t *delete(struct node *front)
 {
-    //insert your code here
+    //**********2-2 insert your code here
+    // delete the patient who is served first
+    // straight forward, follow the instruction step by step
     
     
     
