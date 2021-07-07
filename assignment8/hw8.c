@@ -15,7 +15,6 @@
 
 #define MAXSTRING 200
 #define HASHSIZE 400
-#define TABLE_SIZE 400
 
 // finite state machine states
 #define STARTSTATE 0
