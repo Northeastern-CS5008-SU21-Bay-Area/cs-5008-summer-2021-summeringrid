@@ -1,6 +1,5 @@
 // name: Xiaoying Liu
 // email: liu.xiaoying@northeastern.edu
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -14,23 +13,87 @@ typedef struct node
 /* Structure represents a Graph with an array of adjacency lists.Size of the array will be number of vertices.*/
 typedef struct Graph
 {
-    int numberOfVertices;
-    struct node** adjLists;
+    int numberOfVertices;       // size of the adjlists (size of the linked list)? or how many linked list there is?
+    struct node** adjLists;     // pointer to a pointer (double pointer - -|||)
 }Graph;
 
 /*A function to create a newnode*/
+node* createnode(char *name)        // pointer to the string
+{
+    node* newnode = (node*)malloc(sizeof(node));
+    strcpy(newnode->name, name);
+    newnode->next = NULL;
+    return newnode;
+}
 /*A function to create a graph with an array of adjacency lists which is= numberof vertices*/
-
-
-
-    
+Graph* createGraph(int vertices)     // vetices is the number of the nodes
+{
+    Graph* graph = (Graph*)malloc(sizeof(Graph));       //Q1: why the size is just Graph?
+    graph->numberOfVertices = vertices;
+    //graph->adjLists = (struct node**)malloc(sizeof(struct node*));      // Q2: can't understand this part :(
+    graph->adjLists = (struct node**)malloc(vertices *sizeof(struct node*));        // Q4: malloc for vertices?
+    int i;
+    for (i = 0; i < graph->numberOfVertices; i++)
+    {
+        graph->adjLists[i] = NULL;
+    }
+    return graph;
+}
+int numberoflists(Graph* graph)
+{
+    int i, j;
+    j = 0;
+    for (i = 0; i < graph->numberOfVertices; i++)      //graph->numberOfVertices not vertices..
+    {
+        if(graph->adjLists[i] != 0)
+        j++;
+    }
+    return j;
+}
+int search(Graph* graph, char* name)
+{
+    int i;
+    for (i = 0; i < numberoflists(graph); i++)
+    {
+        if (strcmp(graph->adjLists[i]->name, name)==0)      // compare two strings
+            return i;
+    }
+    return -1;
+}
+   
 
 /*adds an edge to an undirected graph*/
 void addConnection(Graph* graph, char* person, char* friend)
 {
-
+    node* newperson = createnode(person);
+    node* newfriend = createnode(friend);
+    int n = numberoflists(graph);
+    int p = search(graph, person);
     //************** Insert your code here
-    
+    // check each possibility (adding edges); don't look at slides p11 first, try to figure it out by yourself.
+    if (n == 0)
+    {
+        graph->adjLists[0] = newperson;
+        newperson->next = newfriend;
+    }
+    else
+    {
+        if (p >= 0)
+        {
+            node* temp = graph->adjLists[p];
+            while (temp->next != NULL)
+            {
+                temp = temp->next;
+            }
+            temp->next = newfriend;
+            //todo Q3: how to put temp back to the graph?
+        }
+        else
+        {
+            graph->adjLists[n] = newperson;
+            newperson->next = newfriend;
+        }
+    }
     
     
 }
@@ -165,3 +228,5 @@ int main()
     printMatrix(adj_matrix, graph);
     graph_destroy(graph);
 }
+
+

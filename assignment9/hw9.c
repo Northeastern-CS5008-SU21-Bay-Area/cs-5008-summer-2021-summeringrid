@@ -1,5 +1,5 @@
-// name: <your name here>
-// email: <your email here>
+// name: Xiaoying Liu
+// email: liu.xiaoying@northeastern.edu
 
 
 #include <stdio.h>
@@ -73,6 +73,7 @@ typedef struct nd {
   struct nd* left_p;
   struct nd* right_p;
 } node_t;
+
 
 // create new node with value d and NULL left & right pointers
 node_t* newNode (int d) {
@@ -221,14 +222,24 @@ int main () {
 
   // debug print out the graph - as a list
   printGraphAsList(E,GSIZE);
+  //printGraphAsMatrix(E,GSIZE);
 
   // add start node to work queue
   enqueue(q,0);
-
   printf("\nBREADTH FIRST TRAFERSAL\n");
   while (!isEmpty(q)) {
-
-    // INSERT YOUR CODE HERE
+    // **************** INSERT YOUR CODE HERE
+    current = dequeue(q);
+    done[0] = true;
+    printf("NODE: %d\n", current);
+    for (j=0; j<GSIZE; j++)
+    {
+      if(E[current][j] && !done[j])
+      {
+        enqueue(q, j);
+        done[j] = true;
+      }
+    }
     
   }
 
