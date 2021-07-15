@@ -49,11 +49,35 @@ void enqueue(Queue *q, int e)
 }
 
 /*Create graph in adjacency matrix form*/
+void creategraph(int adjMatrix[][MAX], int V)
+{
+    int i, j;
+    for (i=1; i <= V; i++)
+    {
+        for (j=1; j <= V; j++)
+        {
+            adjMatrix[i][j] = 0;
+        }
+    }
+}
 
 /*Function to add edges from source to destination*/
-
+void addEdge(int adjMatrix[][MAX], int src, int dest)
+{
+    adjMatrix[src][dest] = 1;
+}
 /*Print the adjacency matrix of the Graph*/
-
+void printAdjMatrix(int adjMatrix[][MAX], int V)
+{
+    int i, j;
+    for (i=1; i <= V; i++)
+    {
+        for (j=1; i <= V;j++)
+        {
+            printf("%6d", adjMatrix[i][j]);
+        }
+    }
+}
 
 
 
