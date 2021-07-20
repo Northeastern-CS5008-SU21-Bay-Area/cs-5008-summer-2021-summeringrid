@@ -1,5 +1,5 @@
-//Enter your name here
-//Enter your email here
+// name: Xiaoying Liu
+// email: liu.xiaoying@northeastern.edu
 
 #include<stdio.h>
 #include<stdlib.h>
