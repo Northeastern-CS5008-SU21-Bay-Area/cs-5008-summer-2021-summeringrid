@@ -1,5 +1,5 @@
-// name: Xiaoying Liu
-// email: liu.xiaoying@northeastern.edu
+//
+//
 
 #include<stdio.h>
 #include<stdlib.h>
@@ -49,33 +49,29 @@ void enqueue(Queue *q, int e)
 }
 
 /*Create graph in adjacency matrix form*/
-void creategraph(int adjMatrix[][MAX], int V)
-{
+void creategraph(int adjMatrix[][MAX],int V){
+    //instructor missed int on the above line
     int i, j;
-    for (i=1; i <= V; i++)
-    {
-        for (j=1; j <= V; j++)
-        {
-            adjMatrix[i][j] = 0;
+    for (i=1;i<=V;i++){
+        for(j=1;j<=V; j++){
+            adjMatrix[i][j]=0;//initialize all values as zero, meaning there is no edge
         }
     }
 }
 
 /*Function to add edges from source to destination*/
-void addEdge(int adjMatrix[][MAX], int src, int dest)
-{
-    adjMatrix[src][dest] = 1;
+void addEdge(int adjMatrix[][MAX], int src, int dest){
+    adjMatrix[src][dest]=1; //update from 0 to 1
 }
+
 /*Print the adjacency matrix of the Graph*/
-void printAdjMatrix(int adjMatrix[][MAX], int V)
-{
-    int i, j;
-    for (i=1; i <= V; i++)
-    {
-        for (j=1; i <= V;j++)
-        {
-            printf("%6d", adjMatrix[i][j]);
+void printAdjMatrix(int adjMatrix[][MAX],int V){
+    int i,j;
+    for (i=1;i<=V;i++){
+        for(j=1;j<=V; j++){
+            printf("     %d",adjMatrix[i][j]);
         }
+        printf("\n");
     }
 }
 
@@ -98,25 +94,59 @@ int find_indegree(int arr[][MAX], int node)
 void topologicalOrder(int arr[][50], Queue *t, int n)
 {
     int j=0,del_node,i;
+    //j is the index for result[]
+    //i is the index to traverse neighbor
     int result[MAX],indeg[MAX];
-    
-    
-    
-    
+
     //Insert your code here
-    
-    
-    
-    
-    
-    
-    
+
+    // 1.Put the nodes with zero indegree in a queue.
+    // Check all nodes from 1 to n to find the indegree.
+    // Call find_indegree function and assign it to indeg array
+    // Check if indegree of that node is zero, if it is zero call enqueue function.
+    // 1. 把每一個node的indegree都用一個arraylist記錄下來：indegree[0][1][2][1][0][1]
+           
+    for (i=1; i<=n; i++) {
+        indeg[i] = find_indegree(arr, i);
+        if (indeg[i] == 0) {
+            enqueue(t, i);
+        }
+    }
+    // 2. 再把所有indegree的node都加入到queue裡，用每個vertex的edge去找它的neighbors
+    // 3. while queue(當queue裡還有node)
+    //     node=dequeue(q)
+    // 2.In this step, we will dequeue the elements and put them into the result array. Also we will update the indegree array.
+    // We will perform step 2 when the queue is not empty(t->front).
+
+    int k = 0;
+    while(!isEmpty(t->front)) {
+        // Call dequeue function and put the deleted node in the result array.Increment the index of the result array.
+        result[k] = dequeue(t);
+        del_node = result[k];
+        k++;
+        // check all nodes from 1 to n to remove the edges connected to the deleted node.
+        // That is done by checking the arr [del_node][i]==1. If true, remove the edge between the deleted node and its
+        // connected nodes, by setting it to zero.
+        for (j=1; j<=n; j++){
+            if (arr[del_node][j]==1) {
+                arr[del_node][j] = 0;       // delete this processed node
+            // indeg[del_node] = indeg[del_node] - 1;
+            // Decrease the indegree of the vertices directly connected to the deleted node by 1
+            indeg[j] = indeg[j] - 1;
+                if (indeg[j]==0){
+                enqueue(t, j);
+                }
+            // Again check if the new indegree for the edge node is zero, if it is true,
+            // add the edge node to the queue by using enqueue function
+            }
+        }
+    }
     
     printf("\nNodes after topological sorting are:\n");
-    for (i=0;i<j;i++)
-    printf("%d\t",result[i]);
+    for (i=0;i<k;i++){
+        printf("%d\t",result[i]);
+    }
     printf("\n");
-    
 }
 
 /*Main Program*/
@@ -135,9 +165,9 @@ int main()
     addEdge(adjMatrix,4,5);
     addEdge(adjMatrix,5,6);
     addEdge(adjMatrix,7,4);
-    
     printAdjMatrix(adjMatrix,vertices);
     topologicalOrder(adjMatrix, &t,vertices);
    
     return 0;
 }
+
