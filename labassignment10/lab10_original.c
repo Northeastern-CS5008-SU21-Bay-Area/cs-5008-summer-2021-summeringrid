@@ -1,5 +1,5 @@
-// Xiaoying Liu
-// liu.xiaoying@northeastern.edu
+/* Enter your name here*/
+/* Enter your email here*/
 
 #include<stdio.h>
 #define MAXN 50       /* largest number of books */
@@ -65,26 +65,16 @@ void partition(int s[], int n, int k)
     int p[MAXN];                /* prefix sums array */
     int m[MAXN][MAXK];            /* DP table for values */
     int d[MAXN][MAXK];            /* DP table for dividers */
-    int cost;                   /* track the minimum cost*/
+    int cost;                /* track the minimum cost*/
     int i,j,x;                /* counters */
+
     
-    /*Insert your code here*/   
-    p[0] = 0;
-	for (i=1; i<=n; i++) 
-    {
-        p[i]=p[i-1]+s[i];
-    }
-	for (i=1; i<=n; i++) 
-    {
-        m[i][1] = p[i];
-    }
-	for (j=1; j<=k; j++) 
-    {
-        m[1][j] = s[1];
-    }
-
-
-/* evaluate main recurrence */
+    
+    /*Insert your code here*/
+    
+  
+    
+    
 /* 2 to k partitions*/
 for (i=2; i<=n; i++)
     
