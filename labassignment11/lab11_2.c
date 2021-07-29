@@ -11,10 +11,8 @@ void *philosopher(void *x)
  //Treat variable x as a pointer to an int and then extract the value into n
     int* a=(int*)x;
     int n=*a;
-
-    /*-----Insert your code here----*/
-    // printf("Test my thread %ld\n", (long)pthread_self());
     
+        /*-----Insert your code here----*/
     int left = n;
     int right = (n+1)%5;
     //1. Print the philosopher (number)is thinking
@@ -35,7 +33,7 @@ void *philosopher(void *x)
     printf("Philosopher %d finished eating.\n",n);
 
     return NULL;
-    
+
 }
 
 
@@ -46,26 +44,27 @@ int main()
     int i,val[5];
     
 //initializing the mutex
-    for (i = 0; i < 5; i++)
+    for(i=0;i<5;i++)
     {
-        pthread_mutex_init(&chopstick[i], NULL);
+        pthread_mutex_init(&chopstick[i],NULL);
     }
-
+    
 //create and run the thread
-    for (i = 0; i < 5; i++)
+    for(i=0;i<5;i++)
     {
         val[i]=i;
-        pthread_create(&threads[i], NULL, (void *)philosopher, &val[i]);        // return void pointer /NULL
+        pthread_create(&threads[i], NULL,(void *)philosopher,&val[i]);
     }
+    
 //wait until all the threads are done
-    for(i = 0; i < 5; i++)
+    for(i=0; i<5;i++)
     {
-        pthread_join(threads[i], NULL);     // !pass tid to wait method
+        pthread_join(threads[i], NULL);
     }
+    
 // Destroying the mutex
-    for (i = 0; i < 5; i++)
+    for(i=0;i<5;i++)
     {
-        //pthread_mutex_init
         pthread_mutex_destroy(&chopstick[i]);
     }
     
