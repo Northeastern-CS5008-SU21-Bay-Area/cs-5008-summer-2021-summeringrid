@@ -18,13 +18,13 @@ void *philosopher(void *x)
     int left = n;
     int right = (n+1)%5;
     //1. Print the philosopher (number)is thinking
-    printf("Philosopher %d is thinking.\n",n);
+    printf("Philosopher %d is thinking.\n",n+1);
     //2. Put the mutex lock for the left chopstick
     pthread_mutex_lock(&chopstick[left]);
     //3. Put the mutex lock for the right chopstick
     pthread_mutex_lock(&chopstick[right]);
     //4. Print the philosopher (number) is eating with the chopstick (numbers).
-    printf("Philosopher %d is eating using chopstick[%d] and chopstick[%d]\n",n,left,right);
+    printf("Philosopher %d is eating using chopstick[%d] and chopstick[%d]\n",n+1,left,right);
     //5. Sleep for sometime. Use sleep(1) statement.
     sleep(1);
     //6. Unlock the mutex lock for the left chopstick
@@ -32,7 +32,7 @@ void *philosopher(void *x)
     //7. Unlock the mutex lock for right chopstick
     pthread_mutex_unlock(&chopstick[right]);
     //8. Print the philosopher (number) is finished eating
-    printf("Philosopher %d finished eating.\n",n);
+    printf("Philosopher %d finished eating.\n",n+1);
 
     return NULL;
     
