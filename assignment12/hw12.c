@@ -22,17 +22,23 @@ void* thread1 (void* vargp) {
 
 void* thread2 (void* vargp) {
   // add 5 to counter
-  // *** YOUR CODE GOES HERE ***
+  // *** 1/4 YOUR CODE GOES HERE ***
+  counter = counter +5;
+  return NULL;
 }
 
 void* thread3 (void* vargp) {
   // subtract 2 from counter
-  // *** YOUR CODE GOES HERE ***
+  // *** 2YOUR CODE GOES HERE ***
+  counter = counter -2;
+  return NULL;
 }
 
 void* thread4 (void* vargp) {
   // subtract 10 from counter
-  // *** YOUR CODE GOES HERE ***
+  // *** 3/4 YOUR CODE GOES HERE ***
+  counter = counter -10;
+  return NULL;
 }
 
 int main() {
@@ -45,7 +51,10 @@ int main() {
   // create and run the thread
   for (i=0; i < NTHREADS; ++i){
     pthread_create(&(tid[i]), NULL, thread1, NULL);
-    // *** YOUR CODE GOES HERE ***
+    // *** 4/4 YOUR CODE GOES HERE ***
+    pthread_create(&(tid[2*i]), NULL, thread2, NULL);
+    pthread_create(&(tid[3*i]), NULL, thread3, NULL);
+    pthread_create(&(tid[4*i]), NULL, thread4, NULL);
   }
 
   //wait until all threads are done
@@ -57,3 +66,5 @@ int main() {
 
   return 0;
 }
+
+
